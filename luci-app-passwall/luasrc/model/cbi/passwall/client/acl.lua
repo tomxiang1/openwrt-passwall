@@ -49,7 +49,7 @@ o = s:option(DummyValue, "sources", translate("Source"))
 o.rawhtml = true
 o.cfgvalue = function(t, n)
 	local e = ''
-	local v = Value.cfgvalue(t, n) or ''
+	local v = Value.cfgvalue(t, n) or '-'
 	string.gsub(v, '[^' .. " " .. ']+', function(w)
 		local a = w
 		if mac_t[w] then
@@ -61,6 +61,12 @@ o.cfgvalue = function(t, n)
 		e = e .. a
 	end)
 	return e
+end
+
+o = s:option(DummyValue, "interface", translate("Source Interface"))
+o.cfgvalue = function(t, n)
+	local v = Value.cfgvalue(t, n) or '-'
+	return v
 end
 
 --[[
